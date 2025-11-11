@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+  <!-- VeeHub favicon based on header logo -->
+  <path d="M3 11l2-3h14l2 3v4a1 1 0 0 1-1 1h-1a2 2 0 0 1-4 0H9a2 2 0 0 1-4 0H4a1 1 0 0 1-1-1v-4z" stroke="#2B7CFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="7.5" cy="16.5" r="1.5" fill="#2B7CFF"/>
+  <circle cx="16.5" cy="16.5" r="1.5" fill="#2B7CFF"/>
+</svg>
