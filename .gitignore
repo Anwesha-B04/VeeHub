@@ -16,8 +16,7 @@ backend/node_modules/
 /backend/.env
 
 # Uploads and generated media
-/uploads/
-/backend/uploads/
+
 
 # Logs
 npm-debug.log*
