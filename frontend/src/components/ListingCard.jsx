@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const apiBase = (import.meta.env.VITE_API_BASE || 'http://localhost:5000/api').replace(/\/api$/,'');
 
@@ -19,7 +20,7 @@ export default function ListingCard({listing, onSelect, selected}){
         <p>{listing.mileage} km • {listing.fuelType} • {listing.location}</p>
         <div style={{display:'flex', gap:8, alignItems:'center'}}>
           <label style={{display:'flex', alignItems:'center', gap:6}}><input type="checkbox" checked={selected} onChange={()=>onSelect(listing._id)} /> Compare</label>
-          <a className="btn btn-outline" href={`/buyer/listing/${listing._id}`} onClick={(e)=>{ e.preventDefault(); window.location.href=`/buyer/listing/${listing._id}` }}>View Details</a>
+          <Link className="btn btn-outline" to={`/buyer/listing/${listing._id}`}>View Details</Link>
         </div>
       </div>
     </div>
