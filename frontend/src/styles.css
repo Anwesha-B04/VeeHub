@@ -1,31 +1,48 @@
 body{ font-family: Arial, sans-serif; margin:0; padding:0 }
-.topbar{display:flex; justify-content:space-between; align-items:center; padding:18px 28px; background:linear-gradient(90deg, #ffffff, #ffffff); border-bottom:1px solid rgba(11,37,69,0.04);}
-.topbar .brand a{font-weight:700; color:#0b4da0; text-decoration:none; font-size:20px}
+
+/* NOTE: Header / topbar styling migrated to Tailwind utilities during staged conversion.
+	Keep minimal fallbacks here so non-Tailwind consumers still render reasonably. */
+.topbar{ display:block; /* migrated to Tailwind - intentionally left minimal */ }
+.topbar .brand a{ font-weight:700; text-decoration:none }
 .topbar nav{display:flex; gap:12px; align-items:center}
 .topbar a{color:#0b4da0; margin-right:8px; text-decoration:none}
 
 /* header / topbar refined */
 .brand-link{display:flex; align-items:center; gap:12px; text-decoration:none}
 .logo{display:inline-flex; align-items:center; justify-content:center}
-.brand-text{font-weight:700; font-size:20px; color:#0b2545}
-.topnav{display:flex; align-items:center; gap:12px}
-.nav-link{color:#0b2545; text-decoration:none; padding:8px 10px; border-radius:8px}
-.nav-link:hover{background:rgba(43,124,255,0.04)}
-.nav-label{color:#6b7c93; text-decoration:none; margin-right:8px}
-.nav-right{display:flex; align-items:center; gap:12px}
-.signout-btn{display:inline-flex; align-items:center; gap:10px; background:#fff; border:1px solid rgba(11,37,69,0.08); padding:8px 12px; border-radius:10px; cursor:pointer; transition:box-shadow .12s ease, transform .08s ease, border-color .12s ease}
-.signout-btn:hover{ box-shadow:0 8px 20px rgba(11,37,69,0.06); transform:translateY(-2px); border-color:rgba(43,124,255,0.12) }
-.signout-btn .btn-text{ color:#0b2545; font-weight:600 }
-.signout-btn .btn-icon{ display:inline-flex; align-items:center; justify-content:center }
+.brand-text{font-weight:700; font-size:20px}
+.topnav{ display:flex; align-items:center; gap:8px; /* migrated to Tailwind */ }
+.nav-link{ text-decoration:none }
+.nav-link:hover{ background:transparent }
+.nav-label{ text-decoration:none }
+.nav-right{ display:flex; gap:12px }
+.signout-btn{ display:inline-flex; align-items:center; gap:8px; /* style provided by Tailwind utilities in header components */ }
 .btn{padding:8px 14px; border-radius:8px; border:0; cursor:pointer; text-decoration:none}
-.btn-primary{background:linear-gradient(90deg,#2b7cff,#3aa0ff); color:#fff; box-shadow:0 8px 20px rgba(43,124,255,0.12); border-radius:10px; padding:10px 14px}
-.btn-outline{background:#fff; color:#223; border:1px solid #e6eefc}
+/* Primary button visuals now handled by Tailwind; keep minimal fallback */
+.btn-primary{ display:inline-flex; align-items:center; justify-content:center; /* migrated to Tailwind */ }
+.btn-outline{ background:#fff; color:#223; border:1px solid #e6eefc }
 .btn.large{padding:12px 22px}
+.header-cta{ /* stronger fallback for header Get Started CTA */
+	background: linear-gradient(90deg,#2b7cff,#3aa0ff) !important;
+	color: #fff !important;
+	box-shadow: 0 8px 20px rgba(43,124,255,0.14);
+	padding: 10px 18px !important;
+	border-radius: 9999px !important;
+	font-weight: 700;
+}
+
+/* Header Sign In specific hover — only affects header Sign In link */
+.header-signin{ transition: background-color .15s ease, color .15s ease, box-shadow .15s ease; }
+.header-signin:hover{
+	background: linear-gradient(90deg,#2b7cff,#3aa0ff) !important;
+	color: #ffffff !important;
+	box-shadow: 0 10px 30px rgba(43,124,255,0.12);
+}
 .container{padding:24px 28px}
 .filters input{margin-right:8px}
-.listing-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px}
-.card{border:1px solid #ddd; border-radius:6px; overflow:hidden}
-.card-body{padding:8px}
+.listing-grid{ display:block; /* layout migrated to Tailwind grid utilities */ }
+.card{ border-radius:6px; overflow:hidden; /* card visuals migrated to Tailwind for converted components; minimal fallback */ }
+.card-body{ padding:8px }
 .wizard label{display:block; margin-bottom:8px}
 
 /* Landing page styles */
@@ -136,15 +153,45 @@ body{ font-family: Arial, sans-serif; margin:0; padding:0 }
 .cta-banner{background:linear-gradient(90deg,#2b7cff,#3aa0ff); color:#fff; padding:48px 0; margin-top:28px}
 .cta-inner{max-width:1100px; margin:0 auto; text-align:center}
 
-/* Ensure CTA banner button remains strongly visible on gradient background */
+/* CTA banner visual improvements (only this section) */
+.cta-banner{background:linear-gradient(90deg,#2b7cff,#3aa0ff); color:#fff; padding:56px 0; margin-top:28px}
+.cta-inner{max-width:1100px; margin:0 auto; text-align:center}
+
+/* Make heading and paragraph more uniform and legible in the CTA area */
+.cta-banner .cta-inner h2{
+	font-size:28px;
+	line-height:1.2;
+	margin:0 0 8px 0;
+	font-weight:700;
+	color: #ffffff;
+}
+.cta-banner .cta-inner p{
+	font-size:16px;
+	line-height:1.5;
+	margin:0 0 18px 0;
+	color: rgba(255,255,255,0.95);
+	max-width:760px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* Ensure CTA banner button remains strongly visible on gradient background (only here) */
 .cta-banner .btn.btn-primary{
-	background: linear-gradient(90deg,#1268e6,#2b7cff) !important;
+	background: linear-gradient(90deg,#0f5fde,#2b7cff) !important;
 	color: #fff !important;
-	box-shadow: 0 14px 36px rgba(43,124,255,0.18);
-	border-radius: 10px;
-	padding: 12px 22px;
-	font-weight: 700;
+	box-shadow: 0 18px 40px rgba(11,37,69,0.12);
+	border-radius: 12px;
+	padding: 14px 28px;
+	font-weight: 800;
 	display: inline-block;
+	letter-spacing: 0.2px;
+}
+
+@media(max-width:800px){
+	.cta-banner{padding:40px 0}
+	.cta-banner .cta-inner h2{font-size:20px}
+	.cta-banner .cta-inner p{font-size:15px}
+	.cta-banner .btn.btn-primary{padding:12px 22px}
 }
 
 .cta-banner .btn.btn-primary:active{ transform: translateY(1px); }

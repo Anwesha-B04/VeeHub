@@ -29,15 +29,15 @@ export default function BrowseVehicles(){
 
   return (
     <div>
-      <h2>Browse Vehicles</h2>
-      <div className="filter-panel">
+      <h2 className="text-2xl font-bold mb-4">Browse Vehicles</h2>
+      <div className="filter-panel mb-4">
         <Filters onSearch={(q)=>{ setQuery(q); doSearch(q); }} />
       </div>
-        <div style={{margin:'12px 0', display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-        <div>Showing {results.total || 0} vehicles</div>
-        <div><button className="btn btn-primary btn-compare" onClick={compare}>Compare ({selected.length})</button></div>
+        <div className="my-3 flex justify-between items-center">
+        <div className="text-sm text-slate-600">Showing {results.total || 0} vehicles</div>
+        <div><button className="btn btn-primary btn-compare inline-flex items-center px-4 py-2 rounded-md" onClick={compare}>Compare ({selected.length})</button></div>
       </div>
-      <div className="listing-grid">
+      <div className="listing-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {results.items && results.items.map(l => <ListingCard key={l._id} listing={l} onSelect={toggleSelect} selected={selected.includes(l._id)} />)}
       </div>
     </div>

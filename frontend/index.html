@@ -4,9 +4,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VeeHub Prototype</title>
-    <!-- Favicon: modern browsers support SVG favicons; placed in /public so served at /favicon.svg -->
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <!-- Favicon: modern browsers support SVG favicons; placed in /public so served at /favicon.svg -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <!-- Shortcut icon fallback and inline SVG data URI for browsers that prefer an immediate data favicon -->
+  <link rel="shortcut icon" href="/favicon.svg" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 11l2-3h14l2 3v4a1 1 0 0 1-1 1h-1a2 2 0 0 1-4 0H9a2 2 0 0 1-4 0H4a1 1 0 0 1-1-1v-4z' stroke='%232B7CFF' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='7.5' cy='16.5' r='1.5' fill='%232B7CFF'/%3E%3Ccircle cx='16.5' cy='16.5' r='1.5' fill='%232B7CFF'/%3E%3C/svg%3E">
     <!-- Optional legacy fallback (many browsers still look for /favicon.ico). If you want a true .ico, I can generate it and add here. -->
+    <!-- Tailwind CDN (prototype / staged approach). This adds Tailwind utility classes without changing the build. -->
+    <script>
+      /* Small Tailwind config for brand colors and sensible defaults for the prototype */
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                DEFAULT: '#2b7cff',
+                light: '#3aa0ff'
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Arial']
+            }
+          }
+        }
+      }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
     <div id="root"></div>
