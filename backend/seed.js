@@ -30,6 +30,21 @@ const run = async () => {
         {url:'/uploads/hyundai_creta_front.jpg', alt:'Hyundai Creta front'},
         {url:'/uploads/hyundai_creta_side.jpg', alt:'Hyundai Creta side'},
         {url:'/uploads/hyundai_creta_interior.jpg', alt:'Hyundai Creta interior'}
+      ], condition:'excellent'},
+      {make:'Hyundai', model:'Verna', year:2022, price:1560000, mileage:45000, fuelType:'Petrol', location:'Gujrat', seller: seller._id, images:[
+        {url:'/uploads/hyundai_verna_front.jpg', alt:'Hyundai Verna front'},
+        {url:'/uploads/hyundai_verna_back.jpg', alt:'Hyundai Verna back'},
+        {url:'/uploads/hyundai_verna_interior.jpg', alt:'Hyundai Verna interior'}
+      ], condition:'excellent'},
+      {make:'Tata', model:'Tigor', year:2018, price:895000, mileage:36000, fuelType:'Electric', location:'Kolkata', seller: seller._id, images:[
+        {url:'/uploads/tata_tigor_front.jpg', alt:'Tata Tigor front'},
+        {url:'/uploads/tata_tigor_side.jpg', alt:'Tata Tigor side'}
+      ], condition:'good'},
+      {make:'Volkswagen', model:'Polo', year:2015, price:100000, mileage:50000, fuelType:'Petrol', location:'Chennai', seller: seller._id, images:[
+        {url:'/uploads/volkswagen_polo_front.jpg', alt:'Volkswagen Polo front'},
+        {url:'/uploads/volkswagen_polo_back.jpg', alt:'Volkswagen Polo back'},
+        {url:'/uploads/volkswagen_polo_side.jpg', alt:'Volkswagen Polo side'},
+        {url:'/uploads/volkswagen_polo_interior.jpg', alt:'Volkswagen Polo interior'}
       ], condition:'excellent'}
   ];
 
