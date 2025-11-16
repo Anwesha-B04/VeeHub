@@ -72,3 +72,19 @@ export async function createListing(formData, token){
   const res = await fetch(`${API_BASE}/listings`, { method: 'POST', headers: { Authorization: `Bearer ${token}` }, body: formData });
   return res.json();
 }
+
+export async function getMessages(listingId, token){
+  return getJSON(`/messages/${listingId}`, token);
+}
+
+export async function sendMessage(listingId, toUserId, text, token){
+  return postJSON('/messages', { listingId, toUserId, text }, token);
+}
+
+export async function getUnreadCount(token){
+  return getJSON('/messages/unread-count', token);
+}
+
+export async function getConversations(token){
+  return getJSON('/messages/conversations', token);
+}

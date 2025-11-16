@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getUnreadCount } from '../api'
 
 const Icon = ({name}) => {
   switch(name){
@@ -20,6 +21,17 @@ const Icon = ({name}) => {
 }
 
 export default function BuyerHome(){
+  const [unread, setUnread] = useState(0);
+
+  useEffect(()=>{
+    const token = localStorage.getItem('token');
+    if(!token) return;
+    let mounted = true;
+    getUnreadCount(token).then(r=>{ if(mounted) setUnread(r?.count || 0); }).catch(()=>{});
+    const iv = setInterval(()=> getUnreadCount(token).then(r=>{ if(mounted) setUnread(r?.count || 0); }).catch(()=>{}), 10000);
+    return ()=>{ mounted = false; clearInterval(iv); }
+  },[]);
+
   const features = [
     {title:'Browse Vehicles', desc:'Search and filter through thousands of vehicles with our advanced search tools', to:'/buyer/browse', icon:'search'},
     {title:'360° Gallery', desc:'View high-resolution photos and interactive 360° views of each vehicle', to:'/buyer/browse', icon:'gallery'},
@@ -33,6 +45,12 @@ export default function BuyerHome(){
         <div>
           <h2>Welcome Back!</h2>
           <p className="muted">Explore our features to find your perfect vehicle</p>
+        </div>
+        <div>
+          <Link to="/buyer/messages" className="btn btn-outline" style={{position:'relative'}}>
+            Messages
+            {unread > 0 && <span style={{background:'#ff3b30', color:'#fff', borderRadius:999, padding:'2px 8px', fontSize:12, marginLeft:8, position:'absolute', top:-8, right:-8}}>{unread}</span>}
+          </Link>
         </div>
       </div>
       <div className="cards-grid buyer-cards">

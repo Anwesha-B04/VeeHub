@@ -17,6 +17,13 @@ body{ font-family: Arial, sans-serif; margin:0; padding:0 }
 .nav-label{ text-decoration:none }
 .nav-right{ display:flex; gap:12px }
 .signout-btn{ display:inline-flex; align-items:center; gap:8px; /* style provided by Tailwind utilities in header components */ }
+
+/* Avatar / profile menu in header */
+.avatar-menu{display:inline-flex}
+.avatar-btn{background:transparent; border:0; padding:0; cursor:pointer; display:inline-flex; align-items:center}
+.profile-dropdown{position:absolute; right:0; top:44px; z-index:1400}
+.profile-card{background:#fff; border-radius:10px; padding:12px; box-shadow:0 10px 30px rgba(16,40,70,0.08); border:1px solid #eef4fb; min-width:240px}
+.profile-card .muted{margin-top:4px}
 .btn{padding:8px 14px; border-radius:8px; border:0; cursor:pointer; text-decoration:none}
 /* Primary button visuals now handled by Tailwind; keep minimal fallback */
 .btn-primary{ display:inline-flex; align-items:center; justify-content:center; /* migrated to Tailwind */ }
@@ -353,6 +360,27 @@ body{ font-family: Arial, sans-serif; margin:0; padding:0 }
 	.tradein-form .form-field{margin-bottom:10px}
 }
 
+/* Messages inbox improvements */
+.inbox-list{display:flex; flex-direction:column; gap:12px}
+.inbox-card{display:flex; gap:12px; align-items:center; padding:12px 16px; background:#fff; border-radius:12px; border:1px solid #eef4fb; box-shadow:0 6px 18px rgba(16,40,70,0.03); transition: transform .14s ease, box-shadow .14s ease; position:relative}
+.inbox-card:hover{transform:translateY(-4px); box-shadow:0 18px 40px rgba(16,40,70,0.06)}
+.inbox-left{flex:0 0 56px}
+.inbox-avatar{width:56px; height:56px; border-radius:12px; background:linear-gradient(180deg,#f1f7ff,#ffffff); display:flex; align-items:center; justify-content:center; font-weight:700; color:#0b2545; font-size:18px}
+.inbox-meta{flex:1 1 auto; min-width:0}
+.inbox-title{font-weight:700; color:#0b2545}
+.inbox-sub{font-size:13px; color:#6b7c93; margin-top:4px}
+.inbox-snippet{margin-top:8px; color:#445d6b; font-size:14px; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; line-clamp:2}
+.inbox-right{flex:0 0 160px; display:flex; flex-direction:column; align-items:flex-end; gap:8px}
+.inbox-time{font-size:12px; color:#94a6bf}
+.unread-badge{background:#ff3b30; color:#fff; border-radius:999px; padding:6px 10px; font-weight:700;}
+.inbox-actions{display:flex; gap:6px; opacity:0; transform:translateY(6px); transition:opacity .12s ease, transform .12s ease}
+.inbox-card:hover .inbox-actions{opacity:1; transform:translateY(0)}
+
+@media(max-width:800px){
+	.inbox-right{flex:0 0 120px}
+	.inbox-avatar{width:48px;height:48px}
+}
+
 /* validation / error styles for trade-in form */
 .form-input.invalid{ border-color:#ff6b6b; box-shadow:0 4px 12px rgba(255,107,107,0.06); }
 .field-error{ color:#d23a3a; font-size:13px; margin-top:8px }
@@ -432,6 +460,19 @@ body{ font-family: Arial, sans-serif; margin:0; padding:0 }
 	.compare-table{display:block}
 	.compare-row{display:block; border-bottom:1px solid #eef4fb}
 	.compare-cell{display:block; padding:16px}
+
+/* Stronger Contact Seller button (applies only when contact-seller-btn class is used) */
+.contact-seller-btn{
+	background: linear-gradient(90deg,#0f9d58,#2bb673) !important;
+	color: #fff !important;
+	box-shadow: 0 14px 36px rgba(11,160,95,0.12);
+	border-radius: 10px;
+	padding: 10px 16px;
+	font-weight: 800;
+	border: 0;
+}
+.contact-seller-btn:hover{ transform: translateY(-2px); box-shadow: 0 22px 48px rgba(11,160,95,0.18); }
+.contact-seller-btn:active{ transform: translateY(0); }
 	.attr-col{width:auto; padding-left:12px}
 	.vehicle-thumb{width:120px; height:80px}
 }

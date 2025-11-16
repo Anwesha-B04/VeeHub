@@ -8,6 +8,9 @@ import ListingDetail from './pages/ListingDetail'
 import ComparePage from './pages/ComparePage'
 import TradeInPage from './pages/TradeInPage'
 import SellerDashboard from './pages/SellerDashboard'
+import MessagesInbox from './pages/MessagesInbox'
+import Profile from './pages/Profile'
+import AvatarMenu from './components/AvatarMenu'
 import { getMe } from './api'
 
 export default function App(){
@@ -49,12 +52,8 @@ export default function App(){
                 <div className="nav-right flex items-center gap-3">
                   {user.role === 'buyer' && <Link className="nav-label text-slate-600" to="/buyer">Buyer Dashboard</Link>}
                   {user.role === 'seller' && <Link className="nav-label text-slate-600" to="/seller">Seller Dashboard</Link>}
-                  <button className="signout-btn inline-flex items-center gap-2 bg-white border border-slate-100 px-3 py-2 rounded-md" onClick={logout} aria-label="Sign Out">
-                    <span className="btn-text">Sign Out</span>
-                    <span className="btn-icon" aria-hidden>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 17l5-5-5-5" stroke="#0B2545" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/><path d="M19 12H9" stroke="#0B2545" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                    </span>
-                  </button>
+                  {/* Avatar menu on the right */}
+                  <AvatarMenu user={user} onLogout={logout} />
                 </div>
               )}
             </div>
@@ -100,11 +99,13 @@ export default function App(){
           <Route path="/" element={<Landing />} />
           <Route path="/auth" element={<RegisterLogin onAuth={u=>setUser(u)} />} />
           <Route path="/buyer" element={<BuyerHome user={user} />} />
+          <Route path="/buyer/messages" element={<MessagesInbox user={user} />} />
           <Route path="/buyer/browse" element={<BrowseVehicles user={user} />} />
           <Route path="/buyer/listing/:id" element={<ListingDetail user={user} />} />
           <Route path="/buyer/compare" element={<ComparePage user={user} />} />
           <Route path="/buyer/tradein" element={<TradeInPage user={user} />} />
           <Route path="/seller" element={<SellerDashboard user={user} />} />
+              <Route path="/profile" element={<Profile user={user} />} />
         </Routes>
       </main>
     </div>

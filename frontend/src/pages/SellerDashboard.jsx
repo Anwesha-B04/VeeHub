@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from 'react'
+import { Link } from 'react-router-dom'
 import QuickListingWizard from '../components/QuickListingWizard'
 import ListingCard from '../components/ListingCard'
 import { searchListings } from '../api'
+import { getUnreadCount } from '../api'
 
 export default function SellerDashboard({user}){
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showWizard, setShowWizard] = useState(false);
+  const [unread, setUnread] = useState(0);
 
   const load = async ()=>{
     setLoading(true);
@@ -21,6 +24,15 @@ export default function SellerDashboard({user}){
   }
 
   useEffect(()=>{ if(user && (user._id || user.id)) load(); },[user]);
+
+  useEffect(()=>{
+    const token = localStorage.getItem('token');
+    if(!token) return;
+    let mounted = true;
+    getUnreadCount(token).then(r=>{ if(mounted) setUnread(r?.count || 0); }).catch(()=>{});
+    const iv = setInterval(()=> getUnreadCount(token).then(r=>{ if(mounted) setUnread(r?.count || 0); }).catch(()=>{}), 10000);
+    return ()=>{ mounted = false; clearInterval(iv); }
+  },[]);
 
   const onCreated = (newListing) => {
     // refresh
@@ -39,7 +51,15 @@ export default function SellerDashboard({user}){
           <div className="muted">Manage your vehicle listings</div>
         </div>
         <div>
-          <button className="btn btn-primary seller-add-btn" onClick={()=>setShowWizard(true)}>+ List New Vehicle</button>
+          <div style={{display:'flex', alignItems:'center', gap:8}}>
+            <div style={{display:'flex', gap:8, alignItems:'center'}}>
+              <button className="btn btn-primary seller-add-btn" onClick={()=>setShowWizard(true)}>+ List New Vehicle</button>
+              <Link className="btn btn-outline" to="/buyer/messages" style={{position:'relative'}}>
+                Messages
+                {unread > 0 && <span style={{background:'#ff3b30', color:'#fff', borderRadius:999, padding:'6px 10px', fontWeight:700, marginLeft:8}}>{unread}</span>}
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -85,7 +105,7 @@ export default function SellerDashboard({user}){
         {loading ? <p>Loading...</p> : (
           listings.length ? (
             <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(320px,1fr))', gap:12, marginTop:12}}>
-              {listings.map(l=> <ListingCard key={l._id} listing={l} onSelect={()=>{}} />)}
+              {listings.map(l=> <ListingCard key={l._id} listing={l} onSelect={()=>{}} user={user} />)}
             </div>
           ) : (
             <div style={{textAlign:'center', padding:40}}>
