@@ -10,8 +10,9 @@ This repository contains a MERN-stack prototype for VeeHub — a buyer/seller ve
 - Market-driven price suggestions
 - Authentication (buyer / seller) with JWT
 - Admin / seller dashboard basics and listing management
+- Messaging / Chat feature: This project includes a built-in buyer ↔ seller messaging system so prospective buyers can contact sellers from a listing and sellers can manage conversations.
 
-This README explains how to run the app locally, seed demo data, and deploy (Netlify + Render). Replace any placeholder URLs below with your actual deployed links.
+This README explains how to run the app locally, seed demo data, and deploy (Netlify + Render). 
 
 ---
 
